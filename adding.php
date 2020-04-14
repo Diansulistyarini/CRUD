@@ -1,3 +1,17 @@
+<?php
+include('lib/connection.php');
+$sql = $con->query("SELECT MAX(`kode`) AS kd FROM barang");
+$sql->execute();
+$hasil = $sql->fetch();
+$kode = $hasil['kd'];
+
+$noUrut = (int) substr($kode, 3);
+$noUrut++;
+
+$char = "MD-";
+$newKD = $char.sprintf("%03s", $noUrut);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,8 +80,8 @@
                     <td width="100">
                         <p>Kode Produk</p>
                     </td>
-                    <td><input type="hidden" name="kode" value="Auto">
-                        <span id="labelID" class="kode"><b>Auto</b></span>
+                    <td><input type="text" name="kode" value="<?php echo $newKD;?>" readonly>
+                        <span id="labelID" class="kode"></span>
                     </td>
                 </tr>
 

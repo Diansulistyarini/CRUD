@@ -1,14 +1,3 @@
-<?php
-include ('lib/connection.php');
-$id = $_GET['kode'];
-
-$hasil = $con->query("SELECT * FROM `barang` WHERE `kode`=$id");
-
-
-    
-    foreach($hasil as $data){
-       
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,8 +46,16 @@ $hasil = $con->query("SELECT * FROM `barang` WHERE `kode`=$id");
     </style>
 
 <body>
-    
-    <div class="container">
+    <?php
+    include ('lib/connection.php');
+    $id = $_GET['kode'];
+
+    $hasil = $con->query("SELECT * FROM `barang` WHERE `kode` = '$id'");
+        
+        foreach($hasil as $data){
+        
+    ?>
+        <div class="container">
         <h1 class='text-left' >Edit Data Barang</h1>
             <form action="proses_edit.php" method ='POST'>
             <table class="table" align="center" border="0"> 
@@ -67,7 +64,7 @@ $hasil = $con->query("SELECT * FROM `barang` WHERE `kode`=$id");
                 <td>
                     <h4>Kode Produk</h4>
                 </td>
-                <td><input type="hidden" style="width: 300px" name="kode" value=<?php echo $data['kode']; ?>></input></td>
+                <td><input type="text" style="width: 300px" name="kode" value="<?php echo $data['kode']; ?>" readonly></input></td>
             </tr>
             <tr>
 
@@ -75,13 +72,13 @@ $hasil = $con->query("SELECT * FROM `barang` WHERE `kode`=$id");
                 <td>
                     <h4>Nama Produk</h4>
                 </td>
-                <td><input type="text" style="width: 300px" name="namaproduk" value=<?php echo $data['nama_produk']; ?>></input></td>
+                <td><input type="text" style="width: 300px" name="nama_produk" value="<?php echo $data['nama_produk']; ?>"></input></td>
             </tr>
             <tr>
                 <td>
                     <h4>Harga Produk</h4>
                 </td>
-                <td><input type="number" style="width: 300px" name="hargaproduk" value=<?php echo $data['harga_produk']; ?>></td>
+                <td><input type="number" style="width: 300px" name="harga_produk" value="<?php echo $data['harga_produk']; ?>"></td>
             </tr>
             <tr>
                 <td>
@@ -99,14 +96,14 @@ $hasil = $con->query("SELECT * FROM `barang` WHERE `kode`=$id");
                     <td>
                         <p>Gambar</p>
                     </td>
-                    <td><input type="text" name="gambar" id="image" value=<?php echo $data['gambar']; ?>></td>
+                    <td><input type="text" name="gambar" id="image" value="<?php echo $data['gambar']; ?>"></td>
                 </tr>
 
             <tr>
                 <td>
                     <h4>Stock Barang</h4>
                 </td>
-                <td><input type="number" style="width: 300px" name="stok" value=<?php echo$data['stok']; ?>></td>
+                <td><input type="number" style="width: 300px" name="stok" value="<?php echo$data['stok']; ?>"></td>
             </tr>
         </table>
 
@@ -117,13 +114,13 @@ $hasil = $con->query("SELECT * FROM `barang` WHERE `kode`=$id");
             </td>
             <td>   
                 <div class="back">
-                    <a href="add.php"><input type='submit' class='btn btn-primary mt-4' name='submit' value = "Back"></a>
+                    <a href="adding.php"><input type='submit' class='btn btn-primary mt-4' name='submit' value = "Back"></a>
                 </div>
             </td>
         </tr>
         </table>
 
-            </form>
+        </form>
     <?php } ?>
     </div>
     

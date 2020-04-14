@@ -1,7 +1,7 @@
 <?php
 include ('lib/connection.php');
 $id =$_GET['kode'];
-$result = $con->query("DELETE FROM `barang` WHERE `barang`.`kode` = $id");
+$result = $con->query("DELETE FROM `barang` WHERE `barang`.`kode` = '$id'");
 
 if ($result==TRUE) {
     echo "Data Berhasil di Hapus";

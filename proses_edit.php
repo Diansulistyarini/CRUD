@@ -8,8 +8,7 @@
     $stk = $_POST['stok'];
     $url = $_POST['gambar'];
 
-    $sql = $con->query("UPDATE `barang` SET `nama_produk` = '$nama', `harga_produk` = '$har',
-    `satuan` = '$st', `stok` = '$stk', `gambar` = '$url' WHERE `barang`.`kode` = '$id'");
+    $sql = $con->query("UPDATE `barang` SET `nama_produk` = '$nama', `harga_produk` = '$har', `satuan` = '$st', `stok` = '$stk', `gambar` = '$url' WHERE `barang`.`kode` = '$id';");
 
     if($sql == TRUE){
         echo "Data Berhasil di Update";
